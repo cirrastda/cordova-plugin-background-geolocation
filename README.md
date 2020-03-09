@@ -1,15 +1,9 @@
-# @mauron85/cordova-plugin-background-geolocation
+# @cirrastda/cordova-plugin-background-geolocation-fcm-notificate
 
-## We're moving
+## Package
 
-Npm package is now [@mauron85/cordova-plugin-background-geolocation](https://www.npmjs.com/package/@mauron85/cordova-plugin-background-geolocation)!
+This package is a [@mauron85/cordova-plugin-background-geolocation](https://github.com/mauron85/cordova-plugin-background-geolocation) changed to work with FCM Notifications without break it!
 
-
-## Donation
-
-Please support my work and continued development with your donation.
-
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KTUXQQD85F666)
 
 ## Submitting issues
 
@@ -55,7 +49,7 @@ See [MIGRATIONS.md](/MIGRATIONS.md)
 ## Installing the plugin
 
 ```
-cordova plugin add @mauron85/cordova-plugin-background-geolocation
+cordova plugin add https://github.com/cirrastda/cordova-plugin-background-geolocation-fcm-notificate
 ```
 
 You may also want to change default iOS permission prompts and set specific google play version and android support library version for compatibility with other plugins.
@@ -63,7 +57,7 @@ You may also want to change default iOS permission prompts and set specific goog
 **Note:** Always consult documentation of other plugins to figure out compatible versions.
 
 ```
-cordova plugin add @mauron85/cordova-plugin-background-geolocation \
+cordova plugin add https://github.com/cirrastda/cordova-plugin-background-geolocation-fcm-notificate \
   --variable GOOGLE_PLAY_SERVICES_VERSION=11+ \
   --variable ANDROID_SUPPORT_LIBRARY_VERSION=23+ \
   --variable ALWAYS_USAGE_DESCRIPTION="App requires ..." \
@@ -73,7 +67,7 @@ cordova plugin add @mauron85/cordova-plugin-background-geolocation \
 Or in `config.xml`:
 
 ```
-<plugin name="cordova-plugin-background-geolocation" spec="@mauron85/cordova-plugin-background-geolocation@~3.1.0">
+<plugin name="cordova-plugin-background-geolocation" spec="https://github.com/cirrastda/cordova-plugin-background-geolocation-fcm-notificate">
   <variable name="GOOGLE_PLAY_SERVICES_VERSION" value="11+" />
   <variable name="ANDROID_SUPPORT_LIBRARY_VERSION" value="26+" />
   <variable name="ICON" value="@mipmap/icon" />
@@ -92,7 +86,7 @@ This plugin should work with Adobe® PhoneGap™ Build without any modification.
 To register plugin add following line into your `config.xml`:
 
 ```
-<plugin name="@mauron85/cordova-plugin-background-geolocation"/>
+<plugin name="cordova-plugin-background-geolocation" spec="https://github.com/cirrastda/cordova-plugin-background-geolocation-fcm-notificate"/>
 ```
 
 **Note:** If you're using *hydration*, you have to download and reinstall your app with every new version of the plugin, as plugins are not updated.
@@ -135,6 +129,7 @@ function onDeviceReady() {
     distanceFilter: 50,
     notificationTitle: 'Background tracking',
     notificationText: 'enabled',
+    useNotification: true,
     debug: true,
     interval: 10000,
     fastestInterval: 5000,
@@ -249,6 +244,7 @@ Configure options:
 | `desiredAccuracy`         | `Number`          | all          | Desired accuracy in meters. Possible values [HIGH_ACCURACY, MEDIUM_ACCURACY, LOW_ACCURACY, PASSIVE_ACCURACY]. Accuracy has direct effect on power drain. Lower accuracy = lower power drain.                                                                                                                                                       | all         | MEDIUM\_ACCURACY           | 
 | `stationaryRadius`        | `Number`          | all          | Stationary radius in meters. When stopped, the minimum distance the device must move beyond the stationary location for aggressive background-tracking to engage.                                                                                                                                                                                  | DIS         | 50                         | 
 | `debug`                   | `Boolean`         | all          | When enabled, the plugin will emit sounds for life-cycle events of background-geolocation! See debugging sounds table.                                                                                                                                                                                                                             | all         | false                      | 
+| `useNotification`         | `Boolean`         | all          | When enabled, the plugin will use default app notification listener instead of creating one. This is helpful to use this plugin with FCM notification.                                                                                                                                                                                                                             | all         | false                      | 
 | `distanceFilter`          | `Number`          | all          | The minimum distance (measured in meters) a device must move horizontally before an update event is generated. **@see** [Apple docs](https://developer.apple.com/library/ios/documentation/CoreLocation/Reference/CLLocationManager_Class/CLLocationManager/CLLocationManager.html#//apple_ref/occ/instp/CLLocationManager/distanceFilter).        | DIS,RAW     | 500                        | 
 | `stopOnTerminate`         | `Boolean`         | all          | Enable this in order to force a stop() when the application terminated (e.g. on iOS, double-tap home button, swipe away the app).                                                                                                                                                                                                                  | all         | true                       | 
 | `startOnBoot`             | `Boolean`         | Android      | Start background service on device boot.                                                                                                                                                                                                                                                                                                           | all         | false                      | 
